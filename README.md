@@ -5,6 +5,9 @@ Development Environment for Thingino firmware
 in a standardized and reproducible environment.
 
 ```
+sudo apt update
+sudo apt install podman
+
 git clone https://github.com/themactep/docker-worker.git ~/thingino-builder
 cd ~/thingino-builder
 ./run.sh
