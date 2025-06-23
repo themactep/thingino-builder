@@ -10,6 +10,11 @@ gawk gcc-mipsel-linux-gnu git golang-go libncurses-dev \
 locales lzop mc nano python3 python3-jinja2 python3-jsonschema \
 rsync ssh sudo toilet u-boot-tools unzip vim wget whiptail
 
+#fknano
+RUN update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1 && \
+update-alternatives --set editor /usr/bin/vim && \
+update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1 && \
+update-alternatives --set vi /usr/bin/vim
 
 RUN update-ca-certificates
 
