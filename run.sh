@@ -87,11 +87,22 @@ $DOCKER build -t thingino-dev .
 
 [ -d "$BR2_DL_DIR" ] || mkdir -p "$BR2_DL_DIR"
 
-# Run a container in interactive mode and mount the source files in it
-echo me:x:$(id -u):$(id -g):My User:/home/me:/bin/bash >passwd
-$DOCKER run --rm -it --user $(id -u):$(id -g) -v $(pwd)/passwd:/etc/passwd:ro \
-        -v $(pwd)/workspace:/home/me \
-        -v $BR2_DL_DIR:/home/me/downloads \
-        thingino-dev:latest
+# Run container in interactive mode and mount the source files in it
+case "$DOCKER" in
+	docker)
+		echo me:x:$(id -u):$(id -g):My User:/home/me:/bin/bash >passwd
+		docker run --rm -it --user $(id -u):$(id -g) \
+			-v $(pwd)/passwd:/etc/passwd:ro \
+			-v $(pwd)/workspace:/home/me \
+			-v $BR2_DL_DIR:/home/me/downloads \
+			thingino-dev:latest
+		;;
+	podman)
+		podman run --rm -it --userns=keep-id \
+			-v $(pwd)/workspace:/home/me \
+			-v $BR2_DL_DIR:/home/me/downloads \
+			thingino-dev:latest
+		;;
+esac
 
 exit 0
