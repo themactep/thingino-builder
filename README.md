@@ -13,7 +13,15 @@ cd ~/thingino-builder
 ./run.sh
 ```
 
-When inside the container, run `make` to start building the firmware.
+If you want to compile from stable branch then run
+
+```
+git checkout stable
+make update
+make
+```
+
+_Use `make cleanbuild` for a clean mutithreaded compilation._
 
 [1]: https://github.com/themactep/thingino-firmware
 [2]: https://podman.io/
