@@ -14,10 +14,13 @@ cd ~/thingino-builder
 ```
 
 If you want to compile from stable branch then run
-
 ```
 git checkout stable
 make update
+```
+
+To launch a compilation run
+```
 make
 ```
 
