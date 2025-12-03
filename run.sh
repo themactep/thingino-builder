@@ -48,7 +48,7 @@ install_podman() {
 	sudo apt-get update
 
 	# install official version of Docker
-	sudo apt-get --assume-yes install podman
+	sudo apt-get --assume-yes install podman runc
 
 	need_docker=0
 	DOCKER=podman
